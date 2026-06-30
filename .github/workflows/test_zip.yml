@@ -44,6 +44,8 @@ jobs:
       - name: Compile for Windows
         working-directory: app
         run: flutter build windows
+        env:
+          _CL_: "/D_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS"
 
       - name: Create empty settings.json
         working-directory: app
