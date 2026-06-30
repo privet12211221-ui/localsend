@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  FLUTTER_VERSION: "3.35.6"
+  FLUTTER_VERSION: "3.38.10"
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
 
   build_windows_zip:
     needs: build
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     steps:
       - name: Fix long file paths
