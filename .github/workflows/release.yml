@@ -351,6 +351,15 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      - name: Patch gal plugin
+        working-directory: app
+        run: |
+          $galCmake = "windows/flutter/ephemeral/.plugin_symlinks/gal/windows/CMakeLists.txt"
+          if (Test-Path $galCmake) {
+            Add-Content -Path $galCmake -Value "`nadd_definitions(-D_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS)"
+            Write-Host "Successfully patched gal plugin CMakeLists!"
+          }
+
       - name: Compile for Windows
         working-directory: app
         run: flutter build windows
