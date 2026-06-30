@@ -85,6 +85,12 @@ class _ReceivePageState extends State<ReceivePage> with Refena {
       provider: (ref) => widget.vm,
       onFirstFrame: (context, vm) {
         ref.notifier(selectedReceivingFilesProvider).setFiles(vm.files);
+        if (vm.message != null) {
+          unawaited(Clipboard.setData(ClipboardData(text: vm.message!)));
+          if (checkPlatformIsDesktop()) {
+            context.showSnackBar(t.general.copiedToClipboard);
+          }
+        }
       },
       dispose: (ref) {
         ref.dispose(widget.vm);
